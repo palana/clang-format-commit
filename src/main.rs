@@ -28,5 +28,12 @@ fn main() {
             .unwrap();
         git_output(&["add", file.trim()]);
     }
-    git_output(&["commit", "--amend", "--no-edit"]);
+    let changes =
+        String::from_utf8(git_output(&["status", "-uno", "--porcelain=v1"]).stdout).unwrap();
+    if !changes.is_empty() {
+        println!("Committing changes");
+        git_output(&["commit", "--amend", "--no-edit"]);
+    } else {
+        println!("No changes, leaving commit as is");
+    }
 }
