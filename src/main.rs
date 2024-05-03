@@ -6,7 +6,7 @@ fn git_output(args: &[&str]) -> std::process::Output {
 }
 
 const CLANG_FORMAT: &str = r#"C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\Llvm\x64\bin\clang-format"#;
-const FILE_EXTENSIONS: &[&str] = &[".c", ".h", ".cpp", ".hpp"];
+const FILE_EXTENSIONS: &[&str] = &[".c", ".h", ".cpp", ".hpp", ".mm", ".m"];
 
 fn main() {
     let sha = String::from_utf8(git_output(&["rev-parse", "head"]).stdout).unwrap();
